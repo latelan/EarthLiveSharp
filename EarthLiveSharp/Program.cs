@@ -176,6 +176,39 @@ namespace EarthLiveSharp
                 Directory.CreateDirectory(image_folder);
             }
         }
+
+        private static void GenLockScreenWallpaper()
+        {
+            // get current screen bounds
+            int SH = Screen.PrimaryScreen.Bounds.Height;
+            int SW = Screen.PrimaryScreen.Bounds.Width;
+
+            using (Bitmap wallpaper = new Bitmap(string.Format("{0}\\wallpaper.bmp", image_folder)),
+                          newMap = new Bitmap(SW, SH))
+            {
+                // we zoom down the wallpaper when it is bigger than the current screen.
+                // ratio to 0.8
+                int newSize = wallpaper.Height;
+                double ratio = 0.8;
+                if (newSize >= SH || newSize >= SW)
+                {
+                    int hX = newSize - SH;
+                    int wX = newSize - SW;
+                    newSize = (int)((hX > wX) ? (SH * ratio) : (SW * ratio));
+                }
+
+                Bitmap newWallpaper = new Bitmap(wallpaper, newSize, newSize);
+                Graphics g = Graphics.FromImage(newMap);
+                g.Clear(Color.Black);
+                g.DrawImage(newWallpaper, (SW - newSize) / 2, (SH - newSize) / 2);
+                g.Dispose();
+                newWallpaper.Dispose();
+
+                String backgroundImgPath = String.Format("{0}\\backgroundDefault.jpg", image_folder);
+                newMap.Save(backgroundImgPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+            }
+        }
+
         public static void UpdateImage()
         {
             InitFolder();
@@ -190,6 +223,7 @@ namespace EarthLiveSharp
             if (SaveImage()==0)
             {
                 JoinImage();
+                GenLockScreenWallpaper();
             }
             return;
         }
