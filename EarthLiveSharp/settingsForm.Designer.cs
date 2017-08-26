@@ -35,6 +35,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.autostart = new System.Windows.Forms.CheckBox();
             this.interval = new System.Windows.Forms.NumericUpDown();
+            this.retry_interval = new System.Windows.Forms.NumericUpDown();
+            this.label_retry_interval = new System.Windows.Forms.Label();
+            this.delete_timeout = new System.Windows.Forms.NumericUpDown();
+            this.label_delete_timeout = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,7 +57,11 @@
             this.api_secret = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.interval)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.retry_interval)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.delete_timeout)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.image_zoom)).BeginInit();
             this.panel2.SuspendLayout();
@@ -62,10 +70,9 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(62, 366);
-            this.linkLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.linkLabel1.Location = new System.Drawing.Point(50, 353);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(111, 15);
+            this.linkLabel1.Size = new System.Drawing.Size(83, 12);
             this.linkLabel1.TabIndex = 7;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "check upgrade";
@@ -73,10 +80,9 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(213, 354);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Location = new System.Drawing.Point(170, 343);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(94, 29);
+            this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 6;
             this.button3.Text = "Apply";
             this.button3.UseVisualStyleBackColor = true;
@@ -85,39 +91,36 @@
             // version_number
             // 
             this.version_number.AutoSize = true;
-            this.version_number.Location = new System.Drawing.Point(16, 366);
-            this.version_number.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.version_number.Location = new System.Drawing.Point(13, 353);
             this.version_number.Name = "version_number";
-            this.version_number.Size = new System.Drawing.Size(39, 15);
+            this.version_number.Size = new System.Drawing.Size(29, 12);
             this.version_number.TabIndex = 12;
             this.version_number.Text = "v0.0";
             this.version_number.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(314, 354);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(251, 343);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 29);
+            this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 14;
             this.button1.Text = "Ok";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // autostart
+            // label2
             // 
-            this.autostart.AutoSize = true;
-            this.autostart.Location = new System.Drawing.Point(213, 110);
-            this.autostart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.autostart.Name = "autostart";
-            this.autostart.Size = new System.Drawing.Size(18, 17);
-            this.autostart.TabIndex = 5;
-            this.autostart.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(2, 63);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(155, 12);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Update Interval (minutes)";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // interval
             // 
-            this.interval.Location = new System.Drawing.Point(213, 78);
-            this.interval.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.interval.Location = new System.Drawing.Point(170, 62);
             this.interval.Maximum = new decimal(new int[] {
             120,
             0,
@@ -130,7 +133,7 @@
             0});
             this.interval.Name = "interval";
             this.interval.ReadOnly = true;
-            this.interval.Size = new System.Drawing.Size(122, 25);
+            this.interval.Size = new System.Drawing.Size(98, 21);
             this.interval.TabIndex = 2;
             this.interval.Value = new decimal(new int[] {
             9,
@@ -138,44 +141,106 @@
             0,
             0});
             // 
+            // label_retry_interval
+            // 
+            this.label_retry_interval.AutoSize = true;
+            this.label_retry_interval.Location = new System.Drawing.Point(2, 88);
+            this.label_retry_interval.Name = "label_retry_interval";
+            this.label_retry_interval.Size = new System.Drawing.Size(155, 12);
+            this.label_retry_interval.TabIndex = 3;
+            this.label_retry_interval.Text = "Retry Interval (minutes)";
+            this.label_retry_interval.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // retry_interval
+            // 
+            this.retry_interval.Location = new System.Drawing.Point(170, 86);
+            this.retry_interval.Maximum = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
+            this.retry_interval.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.retry_interval.Name = "retry_interval";
+            this.retry_interval.ReadOnly = true;
+            this.retry_interval.Size = new System.Drawing.Size(98, 21);
+            this.retry_interval.TabIndex = 2;
+            this.retry_interval.Value = new decimal(new int[] {
+            9,
+            0,
+            0,
+            0});
+            // 
+            // label_delete_timeout
+            // 
+            this.label_delete_timeout.AutoSize = true;
+            this.label_delete_timeout.Location = new System.Drawing.Point(2, 108);
+            this.label_delete_timeout.Name = "label_delete_timeout";
+            this.label_delete_timeout.Size = new System.Drawing.Size(155, 12);
+            this.label_delete_timeout.TabIndex = 3;
+            this.label_delete_timeout.Text = "图片超时删除 (Hours)";
+            this.label_delete_timeout.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // delete_timeout
+            // 
+            this.delete_timeout.Location = new System.Drawing.Point(170, 106);
+            this.delete_timeout.Maximum = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
+            this.delete_timeout.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.delete_timeout.Name = "delete_timeout";
+            this.delete_timeout.ReadOnly = true;
+            this.delete_timeout.Size = new System.Drawing.Size(98, 21);
+            this.delete_timeout.TabIndex = 2;
+            this.delete_timeout.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // autostart
+            // 
+            this.autostart.AutoSize = true;
+            this.autostart.Location = new System.Drawing.Point(170, 131);
+            this.autostart.Name = "autostart";
+            this.autostart.Size = new System.Drawing.Size(15, 14);
+            this.autostart.TabIndex = 5;
+            this.autostart.UseVisualStyleBackColor = true;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(130, 109);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(104, 129);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 15);
+            this.label3.Size = new System.Drawing.Size(59, 12);
             this.label3.TabIndex = 7;
             this.label3.Text = "Autostart";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(2, 79);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(207, 15);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Update Interval (minutes)";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(106, 139);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(85, 149);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 15);
+            this.label1.Size = new System.Drawing.Size(77, 12);
             this.label1.TabIndex = 3;
             this.label1.Text = "Image Source";
             // 
             // radioButton_Orgin
             // 
             this.radioButton_Orgin.AutoSize = true;
-            this.radioButton_Orgin.Location = new System.Drawing.Point(213, 136);
+            this.radioButton_Orgin.Location = new System.Drawing.Point(170, 147);
             this.radioButton_Orgin.Margin = new System.Windows.Forms.Padding(2);
             this.radioButton_Orgin.Name = "radioButton_Orgin";
-            this.radioButton_Orgin.Size = new System.Drawing.Size(68, 19);
+            this.radioButton_Orgin.Size = new System.Drawing.Size(53, 16);
             this.radioButton_Orgin.TabIndex = 8;
             this.radioButton_Orgin.TabStop = true;
             this.radioButton_Orgin.Text = "Orgin";
@@ -185,10 +250,10 @@
             // radioButton_CDN
             // 
             this.radioButton_CDN.AutoSize = true;
-            this.radioButton_CDN.Location = new System.Drawing.Point(213, 161);
+            this.radioButton_CDN.Location = new System.Drawing.Point(170, 169);
             this.radioButton_CDN.Margin = new System.Windows.Forms.Padding(2);
             this.radioButton_CDN.Name = "radioButton_CDN";
-            this.radioButton_CDN.Size = new System.Drawing.Size(172, 19);
+            this.radioButton_CDN.Size = new System.Drawing.Size(131, 16);
             this.radioButton_CDN.TabIndex = 8;
             this.radioButton_CDN.TabStop = true;
             this.radioButton_CDN.Text = "CDN (recommended!)";
@@ -197,25 +262,26 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(122, 19);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(98, 15);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 15);
+            this.label4.Size = new System.Drawing.Size(65, 12);
             this.label4.TabIndex = 9;
             this.label4.Text = "Cloud Name";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cloud_name
             // 
-            this.cloud_name.Location = new System.Drawing.Point(213, 15);
+            this.cloud_name.Location = new System.Drawing.Point(170, 12);
             this.cloud_name.Margin = new System.Windows.Forms.Padding(2);
             this.cloud_name.Name = "cloud_name";
-            this.cloud_name.Size = new System.Drawing.Size(123, 25);
+            this.cloud_name.Size = new System.Drawing.Size(99, 21);
             this.cloud_name.TabIndex = 10;
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.image_zoom);
             this.panel1.Controls.Add(this.image_size);
@@ -226,29 +292,30 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.interval);
+            this.panel1.Controls.Add(this.retry_interval);
+            this.panel1.Controls.Add(this.label_retry_interval);
+            this.panel1.Controls.Add(this.delete_timeout);
+            this.panel1.Controls.Add(this.label_delete_timeout);
             this.panel1.Controls.Add(this.autostart);
-            this.panel1.Location = new System.Drawing.Point(15, 15);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(393, 191);
+            this.panel1.Size = new System.Drawing.Size(315, 210);
             this.panel1.TabIndex = 11;
             this.panel1.Tag = "";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(58, 42);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(46, 34);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(151, 15);
+            this.label6.Size = new System.Drawing.Size(113, 12);
             this.label6.TabIndex = 15;
             this.label6.Text = "Wallpaper Zoom (%)";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // image_zoom
             // 
-            this.image_zoom.Location = new System.Drawing.Point(213, 41);
-            this.image_zoom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.image_zoom.Location = new System.Drawing.Point(170, 33);
             this.image_zoom.Minimum = new decimal(new int[] {
             51,
             0,
@@ -256,7 +323,7 @@
             0});
             this.image_zoom.Name = "image_zoom";
             this.image_zoom.ReadOnly = true;
-            this.image_zoom.Size = new System.Drawing.Size(122, 25);
+            this.image_zoom.Size = new System.Drawing.Size(98, 21);
             this.image_zoom.TabIndex = 14;
             this.image_zoom.Value = new decimal(new int[] {
             100,
@@ -274,38 +341,36 @@
             "2200*2200",
             "4400*4400",
             "8800*8800"});
-            this.image_size.Location = new System.Drawing.Point(213, 9);
+            this.image_size.Location = new System.Drawing.Point(170, 7);
             this.image_size.Margin = new System.Windows.Forms.Padding(2);
             this.image_size.Name = "image_size";
-            this.image_size.Size = new System.Drawing.Size(124, 23);
+            this.image_size.Size = new System.Drawing.Size(100, 20);
             this.image_size.TabIndex = 13;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(26, 12);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(21, 10);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(183, 15);
+            this.label5.Size = new System.Drawing.Size(137, 12);
             this.label5.TabIndex = 12;
             this.label5.Text = "Image Quality (pixels)";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // api_key
             // 
-            this.api_key.Location = new System.Drawing.Point(213, 61);
+            this.api_key.Location = new System.Drawing.Point(170, 49);
             this.api_key.Margin = new System.Windows.Forms.Padding(2);
             this.api_key.Name = "api_key";
-            this.api_key.Size = new System.Drawing.Size(123, 25);
+            this.api_key.Size = new System.Drawing.Size(99, 21);
             this.api_key.TabIndex = 17;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(146, 65);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(117, 52);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 15);
+            this.label7.Size = new System.Drawing.Size(47, 12);
             this.label7.TabIndex = 16;
             this.label7.Text = "API Key";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -313,10 +378,9 @@
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(128, 44);
-            this.linkLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.linkLabel2.Location = new System.Drawing.Point(102, 35);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(215, 15);
+            this.linkLabel2.Size = new System.Drawing.Size(161, 12);
             this.linkLabel2.TabIndex = 7;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "(How to get a cloud name?)";
@@ -324,19 +388,18 @@
             // 
             // api_secret
             // 
-            this.api_secret.Location = new System.Drawing.Point(213, 92);
+            this.api_secret.Location = new System.Drawing.Point(170, 74);
             this.api_secret.Margin = new System.Windows.Forms.Padding(2);
             this.api_secret.Name = "api_secret";
-            this.api_secret.Size = new System.Drawing.Size(123, 25);
+            this.api_secret.Size = new System.Drawing.Size(99, 21);
             this.api_secret.TabIndex = 19;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(122, 96);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(98, 77);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(87, 15);
+            this.label8.Size = new System.Drawing.Size(65, 12);
             this.label8.TabIndex = 18;
             this.label8.Text = "API Secret";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -351,17 +414,34 @@
             this.panel2.Controls.Add(this.cloud_name);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.linkLabel2);
-            this.panel2.Location = new System.Drawing.Point(15, 214);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Location = new System.Drawing.Point(12, 231);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(393, 132);
+            this.panel2.Size = new System.Drawing.Size(315, 106);
             this.panel2.TabIndex = 15;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(69, 193);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(89, 12);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Set Lockscreen";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(170, 193);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
+            this.checkBox1.TabIndex = 17;
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // settingsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(421, 395);
+            this.ClientSize = new System.Drawing.Size(337, 376);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.version_number);
@@ -370,7 +450,6 @@
             this.Controls.Add(this.button3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "settingsForm";
             this.ShowInTaskbar = false;
@@ -378,6 +457,8 @@
             this.TopMost = true;
             this.Load += new System.EventHandler(this.settingsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.interval)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.retry_interval)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.delete_timeout)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.image_zoom)).EndInit();
@@ -396,6 +477,10 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox autostart;
         private System.Windows.Forms.NumericUpDown interval;
+        private System.Windows.Forms.NumericUpDown retry_interval;
+        private System.Windows.Forms.NumericUpDown delete_timeout;
+        private System.Windows.Forms.Label label_retry_interval;
+        private System.Windows.Forms.Label label_delete_timeout;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -414,6 +499,8 @@
         private System.Windows.Forms.TextBox api_secret;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label9;
     }
 }
 

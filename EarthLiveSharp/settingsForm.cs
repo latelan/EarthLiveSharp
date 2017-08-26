@@ -14,13 +14,15 @@ namespace EarthLiveSharp
         private void button3_Click(object sender, EventArgs e)
         {
             Cfg.interval = (int)(interval.Value);
+            Cfg.retry_interval = (int)(retry_interval.Value);
+            Cfg.delete_timeout = (int)(delete_timeout.Value);
             Cfg.zoom = (int)(image_zoom.Value);
             Cfg.autostart = autostart.Checked;
             if (radioButton_CDN.Checked)
             {
                 Cfg.source_selection = 1;
                 Cfg.cloud_name = cloud_name.Text;
-                Cfg.image_source = "http://res.cloudinary.com/" + Cfg.cloud_name + "/image/fetch/http://himawari8-dl.nict.go.jp/himawari8/img/D531106";
+                Cfg.image_source = Cfg.cloud_url_base + Cfg.cloud_name + "/image/fetch/http://himawari8-dl.nict.go.jp/himawari8/img/D531106";
             }
             else
             {
@@ -64,6 +66,8 @@ namespace EarthLiveSharp
             cloud_name.Text = Cfg.cloud_name;
             autostart.Checked = Cfg.autostart;
             interval.Value = Cfg.interval;
+            retry_interval.Value = Cfg.retry_interval;
+            delete_timeout.Value = Cfg.delete_timeout;
             image_zoom.Value = Cfg.zoom;
             api_key.Text = Cfg.api_key;
             api_secret.Text = Cfg.api_secret;
@@ -87,12 +91,13 @@ namespace EarthLiveSharp
                 case 16: image_size.SelectedIndex = 4; break;
                 default: image_size.SelectedIndex = 0; break;
             }
-            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Cfg.interval = (int)(interval.Value);
+            Cfg.retry_interval = (int)(retry_interval.Value);
+            Cfg.delete_timeout = (int)(delete_timeout.Value);
             Cfg.zoom = (int)(image_zoom.Value);
             Cfg.autostart = autostart.Checked;     
             if (radioButton_CDN.Checked)
@@ -101,7 +106,7 @@ namespace EarthLiveSharp
                 Cfg.cloud_name = cloud_name.Text;
                 Cfg.api_key = api_key.Text;
                 Cfg.api_secret = api_secret.Text;
-                Cfg.image_source = "http://res.cloudinary.com/"+ Cfg.cloud_name + "/image/fetch/http://himawari8-dl.nict.go.jp/himawari8/img/D531106";
+                Cfg.image_source = Cfg.cloud_url_base + Cfg.cloud_name + "/image/fetch/http://himawari8-dl.nict.go.jp/himawari8/img/D531106";
             }
             else
             {
