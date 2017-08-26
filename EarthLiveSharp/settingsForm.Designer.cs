@@ -47,6 +47,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cloud_name = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.image_zoom = new System.Windows.Forms.NumericUpDown();
             this.image_size = new System.Windows.Forms.ComboBox();
@@ -57,8 +59,6 @@
             this.api_secret = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.interval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.retry_interval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.delete_timeout)).BeginInit();
@@ -108,19 +108,18 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label2
+            // autostart
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(2, 63);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(155, 12);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Update Interval (minutes)";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.autostart.AutoSize = true;
+            this.autostart.Location = new System.Drawing.Point(170, 131);
+            this.autostart.Name = "autostart";
+            this.autostart.Size = new System.Drawing.Size(15, 14);
+            this.autostart.TabIndex = 5;
+            this.autostart.UseVisualStyleBackColor = true;
             // 
             // interval
             // 
-            this.interval.Location = new System.Drawing.Point(170, 62);
+            this.interval.Location = new System.Drawing.Point(170, 58);
             this.interval.Maximum = new decimal(new int[] {
             120,
             0,
@@ -141,19 +140,9 @@
             0,
             0});
             // 
-            // label_retry_interval
-            // 
-            this.label_retry_interval.AutoSize = true;
-            this.label_retry_interval.Location = new System.Drawing.Point(2, 88);
-            this.label_retry_interval.Name = "label_retry_interval";
-            this.label_retry_interval.Size = new System.Drawing.Size(155, 12);
-            this.label_retry_interval.TabIndex = 3;
-            this.label_retry_interval.Text = "Retry Interval (minutes)";
-            this.label_retry_interval.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // retry_interval
             // 
-            this.retry_interval.Location = new System.Drawing.Point(170, 86);
+            this.retry_interval.Location = new System.Drawing.Point(170, 82);
             this.retry_interval.Maximum = new decimal(new int[] {
             120,
             0,
@@ -174,26 +163,21 @@
             0,
             0});
             // 
-            // label_delete_timeout
+            // label_retry_interval
             // 
-            this.label_delete_timeout.AutoSize = true;
-            this.label_delete_timeout.Location = new System.Drawing.Point(2, 108);
-            this.label_delete_timeout.Name = "label_delete_timeout";
-            this.label_delete_timeout.Size = new System.Drawing.Size(155, 12);
-            this.label_delete_timeout.TabIndex = 3;
-            this.label_delete_timeout.Text = "图片超时删除 (Hours)";
-            this.label_delete_timeout.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label_retry_interval.AutoSize = true;
+            this.label_retry_interval.Location = new System.Drawing.Point(13, 88);
+            this.label_retry_interval.Name = "label_retry_interval";
+            this.label_retry_interval.Size = new System.Drawing.Size(149, 12);
+            this.label_retry_interval.TabIndex = 3;
+            this.label_retry_interval.Text = "Retry Interval (minutes)";
+            this.label_retry_interval.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // delete_timeout
             // 
             this.delete_timeout.Location = new System.Drawing.Point(170, 106);
             this.delete_timeout.Maximum = new decimal(new int[] {
             24,
-            0,
-            0,
-            0});
-            this.delete_timeout.Minimum = new decimal(new int[] {
-            0,
             0,
             0,
             0});
@@ -207,14 +191,15 @@
             0,
             0});
             // 
-            // autostart
+            // label_delete_timeout
             // 
-            this.autostart.AutoSize = true;
-            this.autostart.Location = new System.Drawing.Point(170, 131);
-            this.autostart.Name = "autostart";
-            this.autostart.Size = new System.Drawing.Size(15, 14);
-            this.autostart.TabIndex = 5;
-            this.autostart.UseVisualStyleBackColor = true;
+            this.label_delete_timeout.AutoSize = true;
+            this.label_delete_timeout.Location = new System.Drawing.Point(31, 110);
+            this.label_delete_timeout.Name = "label_delete_timeout";
+            this.label_delete_timeout.Size = new System.Drawing.Size(131, 12);
+            this.label_delete_timeout.TabIndex = 3;
+            this.label_delete_timeout.Text = "Image Timeout (Hours)";
+            this.label_delete_timeout.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label3
             // 
@@ -224,6 +209,16 @@
             this.label3.Size = new System.Drawing.Size(59, 12);
             this.label3.TabIndex = 7;
             this.label3.Text = "Autostart";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 63);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(155, 12);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Update Interval (minutes)";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label1
             // 
@@ -303,10 +298,28 @@
             this.panel1.TabIndex = 11;
             this.panel1.Tag = "";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(170, 193);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
+            this.checkBox1.TabIndex = 17;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(69, 193);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(89, 12);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Set Lockscreen";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(46, 34);
+            this.label6.Location = new System.Drawing.Point(48, 37);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(113, 12);
             this.label6.TabIndex = 15;
@@ -350,7 +363,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(21, 10);
+            this.label5.Location = new System.Drawing.Point(25, 10);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(137, 12);
             this.label5.TabIndex = 12;
@@ -418,24 +431,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(315, 106);
             this.panel2.TabIndex = 15;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(69, 193);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(89, 12);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "Set Lockscreen";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(170, 193);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 17;
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // settingsForm
             // 
