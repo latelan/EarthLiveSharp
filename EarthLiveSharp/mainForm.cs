@@ -80,13 +80,30 @@ namespace EarthLiveSharp
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
+            int update_result;
             scraper.size = Cfg.size;
             scraper.zoom = Cfg.zoom;
             scraper.image_folder = Cfg.image_folder;
             scraper.image_source = Cfg.image_source;
+            scraper.delete_timeout = Cfg.delete_timeout;
             System.Threading.Thread.Sleep(10000); // wait 10 secs for Internet reconnection after system resume.
-            scraper.UpdateImage();
-            Wallpaper.Set(scraper.image_folder+"\\wallpaper.bmp");
+
+            update_result = scraper.UpdateImage();
+
+            timer1.Stop();
+            timer1.Interval = Cfg.interval * 1000 * 60;
+            //success
+            if (update_result == 0)
+            {
+                string image_path = string.Format("{0}\\{1}.png", scraper.image_folder, scraper.save_imageID);
+                Wallpaper.Set(image_path);
+            }
+            //success
+            else if (update_result == scraper.RETRY_GET_IMAGE)
+            {
+                timer1.Interval = Cfg.retry_interval * 1000 * 60;
+            }
+            timer1.Start();
         }
 
         private void Form2_Deactivate(object sender, EventArgs e)
@@ -144,18 +161,29 @@ namespace EarthLiveSharp
             scraper.size = Cfg.size;
             scraper.zoom = Cfg.zoom;
             scraper.image_folder = Cfg.image_folder;
+            scraper.image_tmp_folder = Cfg.image_folder + @"_tmp";
             scraper.image_source = Cfg.image_source;
             scraper.last_imageID = "0"; // reset the scraper record.
             if (!serviceRunning)
             {
+                int update_result = 0;
                 button_start.Enabled = false;
                 button_stop.Enabled = true;
                 button_settings.Enabled = false;
-                scraper.UpdateImage();
+
+                update_result = scraper.UpdateImage();
                 timer1.Interval = Cfg.interval * 1000 * 60;
+                if (update_result == 0)
+                {
+                    string image_path = string.Format("{0}\\{1}.png", scraper.image_folder, scraper.save_imageID);
+                    Wallpaper.SetDefaultStyle();
+                    Wallpaper.Set(image_path);
+                }
+                else if (update_result == scraper.RETRY_GET_IMAGE)
+                {
+                    timer1.Interval = Cfg.retry_interval * 1000 * 60;
+                }
                 timer1.Start();
-                Wallpaper.SetDefaultStyle();
-                Wallpaper.Set(scraper.image_folder + "\\wallpaper.bmp");
                 serviceRunning = true;
                 runningLabel.Text = "    Running";
                 runningLabel.ForeColor = Color.DarkGreen;
